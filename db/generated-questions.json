@@ -1,0 +1,767 @@
+[
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/AI/ChatGPT.svg",
+    "answer": "ChatGPT",
+    "category": "AI",
+    "choices": ["Windows Terminal", "Windows defender", "ChatGPT", "VueJs"],
+    "hint": "An AI chatbot developed by OpenAI, based on the GPT architecture."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/AI/Gemini.svg",
+    "answer": "Gemini",
+    "category": "AI",
+    "choices": ["React", "Arch Linux", "Gemini", "Youtube"],
+    "hint": "A family of AI models created by Google DeepMind, designed for multimodal tasks."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Avast.svg",
+    "answer": "Avast",
+    "category": "Apps",
+    "choices": ["Lua", "Kotlin", "Avast", "Typescript"],
+    "hint": "A popular antivirus software developed by Avast Software, widely used for PC security."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Blender.svg",
+    "answer": "Blender",
+    "category": "Apps",
+    "choices": ["Jest", "Blender", "Ubuntu", "Ruby"],
+    "hint": "A free and open-source 3D creation suite used for modeling, animation, and rendering."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Docker.svg",
+    "answer": "Docker",
+    "category": "Apps",
+    "choices": ["CSS", "Docker", "Mysql", "Electron"],
+    "hint": "A platform for developing, shipping, and running applications in containers."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/GitLab.svg",
+    "answer": "GitLab",
+    "category": "Apps",
+    "choices": ["GitLab", "LinkedIn", "Express", "Bun"],
+    "hint": "A web-based DevOps lifecycle tool that provides a Git repository manager and CI/CD pipeline."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Github.svg",
+    "answer": "Github",
+    "category": "Apps",
+    "choices": ["Javascript", "Github", "Yarn", "Linux"],
+    "hint": "A code hosting platform for version control and collaboration, owned by Microsoft."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Postman.svg",
+    "answer": "Postman",
+    "category": "Apps",
+    "choices": ["Postman", "Erlang", "ChatGPT", "Apple Safari"],
+    "hint": "A collaboration platform for API development, testing, and documentation."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Spotify.svg",
+    "answer": "Spotify",
+    "category": "Apps",
+    "choices": ["Kotlin", "Lua", "Spotify", "ChatGPT"],
+    "hint": "A digital music streaming service founded in Sweden, offering millions of tracks."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Stack Overflow.svg",
+    "answer": "Stack Overflow",
+    "category": "Apps",
+    "choices": ["Node.js", "Facebook", "Stack Overflow", "Youtube"],
+    "hint": "A Q&A website for programmers, part of the Stack Exchange network."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Unity.svg",
+    "answer": "Unity",
+    "category": "Apps",
+    "choices": ["Ruby on Rails", "Rust", "Unity", "C# (CSharp)"],
+    "hint": "A cross-platform game engine developed by Unity Technologies, used for 2D and 3D games."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Unreal-Engine.svg",
+    "answer": "Unreal Engine",
+    "category": "Apps",
+    "choices": ["Unreal Engine", "Mysql", "Rust", "Blender"],
+    "hint": "A powerful game engine developed by Epic Games, known for high-fidelity graphics."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Windows-defender.svg",
+    "answer": "Windows defender",
+    "category": "Apps",
+    "choices": ["Windows defender", "PHP", "Youtube", "Angular"],
+    "hint": "A built-in antivirus and security suite for Microsoft Windows operating systems."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Apps/Youtube.svg",
+    "answer": "Youtube",
+    "category": "Apps",
+    "choices": ["Youtube", "Lua", "Powershell", "Ruby"],
+    "hint": "A video sharing and streaming platform owned by Google, launched in 2005."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Browser/Apple Safari.svg",
+    "answer": "Apple Safari",
+    "category": "Browser",
+    "choices": ["Apache", "PHP", "Apple Safari", "Bun"],
+    "hint": "The default web browser for Apple devices, developed by Apple Inc."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Browser/Chrome.svg",
+    "answer": "Chrome",
+    "category": "Browser",
+    "choices": ["Twitter", "Chrome", "Homebrew", "Visual Studio"],
+    "hint": "A widely used web browser developed by Google, first released in 2008."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Browser/Firefox.svg",
+    "answer": "Firefox",
+    "category": "Browser",
+    "choices": ["Jest", "Typescript", "Firefox", "Mysql"],
+    "hint": "A free and open-source web browser developed by Mozilla Foundation."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Browser/Internet-Explorer.svg",
+    "answer": "Internet Explorer",
+    "category": "Browser",
+    "choices": ["Internet Explorer", "Rust", "Blender", "Stack Overflow"],
+    "hint": "A version of Microsoft's Internet Explorer browser, released in 2012."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Clouds/Cloudflare.svg",
+    "answer": "Cloudflare",
+    "category": "Clouds",
+    "choices": ["Cloudflare", "Go", "Youtube", "Laravel"],
+    "hint": "A web infrastructure and security company providing CDN and DDoS protection services."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Clouds/Firebase.svg",
+    "answer": "Firebase",
+    "category": "Clouds",
+    "choices": ["Ruby", "Kotlin", "Bun", "Firebase"],
+    "hint": "A platform developed by Google for building and managing mobile and web applications."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Clouds/Google Cloud.svg",
+    "answer": "Google Cloud",
+    "category": "Clouds",
+    "choices": ["Ruby on Rails", "Apache", "Twitter", "Google Cloud"],
+    "hint": "A suite of cloud computing services offered by Google."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Clouds/MongoDB.svg",
+    "answer": "MongoDB",
+    "category": "Clouds",
+    "choices": ["Kotlin", "Facebook", "MongoDB", "MacOS"],
+    "hint": "A popular open-source NoSQL database known for its flexibility and scalability."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Angular.svg",
+    "answer": "Angular",
+    "category": "Frameworks",
+    "choices": ["Angular", "ChatGPT", "Gemini", "Rust"],
+    "hint": "A TypeScript-based open-source web application framework led by the Angular Team at Google."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Electron.svg",
+    "answer": "Electron",
+    "category": "Frameworks",
+    "choices": ["Git", "Electron", "Kotlin", "ChatGPT"],
+    "hint": "A framework for building cross-platform desktop apps with JavaScript, HTML, and CSS."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Express.svg",
+    "answer": "Express",
+    "category": "Frameworks",
+    "choices": ["Python", "zig mark", "ESLint", "Express"],
+    "hint": "A minimal and flexible Node.js web application framework for building APIs and web apps."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Flutter.svg",
+    "answer": "Flutter",
+    "category": "Frameworks",
+    "choices": ["Google", "Flutter", "LinkedIn", "C# (CSharp)"],
+    "hint": "An open-source UI software development kit created by Google for building natively compiled apps."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Laravel.svg",
+    "answer": "Laravel",
+    "category": "Frameworks",
+    "choices": ["Fortran", "Laravel", "GitLab", "Lua"],
+    "hint": "A PHP web application framework with expressive, elegant syntax, created by Taylor Otwell."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/NET core.svg",
+    "answer": "NET core",
+    "category": "Frameworks",
+    "choices": ["debian", "Chrome", "Avast", "NET core"],
+    "hint": "A cross-platform, open-source framework for building modern, cloud-based apps from Microsoft."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Nest.js.svg",
+    "answer": "Nest.js",
+    "category": "Frameworks",
+    "choices": ["PyCharm", "Nest.js", "Vite.js", "Webpack"],
+    "hint": "A progressive Node.js framework for building efficient, scalable server-side applications."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/NextJS.svg",
+    "answer": "NextJS",
+    "category": "Frameworks",
+    "choices": ["Jest", "Node.js", "NextJS", "ChatGPT"],
+    "hint": "A React framework for building server-rendered and static web applications, developed by Vercel."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/React.svg",
+    "answer": "React",
+    "category": "Frameworks",
+    "choices": ["React", "Rust", "ChatGPT", "Apple Safari"],
+    "hint": "A JavaScript library for building user interfaces, developed by Facebook."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Ruby on Rails.svg",
+    "answer": "Ruby on Rails",
+    "category": "Frameworks",
+    "choices": ["Swift", "Avast", "Ruby on Rails", "V8"],
+    "hint": "A server-side web application framework written in Ruby, created by David Heinemeier Hansson."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Spring.svg",
+    "answer": "Spring",
+    "category": "Frameworks",
+    "choices": ["Spring", "ChatGPT", "Postman", "Webpack"],
+    "hint": "A powerful, feature-rich framework for building Java applications, especially web apps."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Svelte.svg",
+    "answer": "Svelte",
+    "category": "Frameworks",
+    "choices": ["Homebrew", "Svelte", "Swift", "Node.js"],
+    "hint": "A modern JavaScript framework for building fast web applications, created by Rich Harris."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/Tailwind CSS.svg",
+    "answer": "Tailwind CSS",
+    "category": "Frameworks",
+    "choices": ["Express", "Spotify", "Tailwind CSS", "Ruby"],
+    "hint": "A utility-first CSS framework for rapidly building custom user interfaces."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/TensorFlow.svg",
+    "answer": "TensorFlow",
+    "category": "Frameworks",
+    "choices": ["ESLint", "TensorFlow", "V8", "Kotlin"],
+    "hint": "An open-source machine learning framework developed by Google."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Frameworks/VueJs.svg",
+    "answer": "VueJs",
+    "category": "Frameworks",
+    "choices": ["TensorFlow", "ChatGPT", "Gemini", "VueJs"],
+    "hint": "A progressive JavaScript framework for building user interfaces, created by Evan You."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/IDE/Android Studio.svg",
+    "answer": "Android Studio",
+    "category": "IDE",
+    "choices": ["Webpack", "Windows defender", "Android Studio", "Youtube"],
+    "hint": "The official IDE for Android development, based on JetBrains' IntelliJ IDEA."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/IDE/Atom.svg",
+    "answer": "Atom",
+    "category": "IDE",
+    "choices": ["Powershell", "Atom", "Yarn", "NPM"],
+    "hint": "A hackable text editor for the 21st century, developed by GitHub."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/IDE/PyCharm.svg",
+    "answer": "PyCharm",
+    "category": "IDE",
+    "choices": ["Express", "PyCharm", "LinkedIn", "Vim"],
+    "hint": "A Python IDE for professional developers, created by JetBrains."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/IDE/Vim.svg",
+    "answer": "Vim",
+    "category": "IDE",
+    "choices": ["Vim", "Dart", "Blender", "Flutter"],
+    "hint": "A highly configurable text editor built to enable efficient text editing."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/IDE/Visual Studio Code (VS Code).svg",
+    "answer": "Visual Studio Code (VS Code)",
+    "category": "IDE",
+    "choices": ["Visual Studio Code (VS Code)", "Jest", "Postman", "Swift"],
+    "hint": "A free source-code editor made by Microsoft for Windows, Linux, and macOS."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/IDE/Visual Studio.svg",
+    "answer": "Visual Studio",
+    "category": "IDE",
+    "choices": ["GitLab", "Vite.js", "Svelte", "Visual Studio"],
+    "hint": "An integrated development environment (IDE) from Microsoft."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/OS/Android.svg",
+    "answer": "Android",
+    "category": "OS",
+    "choices": ["Bun", "Homebrew", "Android", "CSS"],
+    "hint": "A mobile operating system developed by Google, based on a modified Linux kernel."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/OS/Apple.svg",
+    "answer": "Apple",
+    "category": "OS",
+    "choices": ["CSS", "Apple", "Windows Terminal", "GDG"],
+    "hint": "A technology company known for its hardware and software products, including macOS and iOS."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/OS/Arch Linux.svg",
+    "answer": "Arch Linux",
+    "category": "OS",
+    "choices": ["Typescript", "Nest.js", "Blender", "Arch Linux"],
+    "hint": "A lightweight and flexible Linux distribution that tries to Keep It Simple."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/OS/Linux.svg",
+    "answer": "Linux",
+    "category": "OS",
+    "choices": ["Apple Safari", "Linux", "Spotify", "Apache"],
+    "hint": "An open-source family of Unix-like operating systems based on the Linux kernel."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/OS/MacOS.png",
+    "answer": "MacOS",
+    "category": "OS",
+    "choices": ["Apple", "Swift", "MacOS", "Yarn"],
+    "hint": "A series of proprietary graphical operating systems developed by Apple for Mac computers."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/OS/Ubuntu.svg",
+    "answer": "Ubuntu",
+    "category": "OS",
+    "choices": ["Windows", "Ubuntu", "ChatGPT", "Blender"],
+    "hint": "A popular Linux distribution based on Debian, developed by Canonical Ltd."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/OS/Windows.svg",
+    "answer": "Windows",
+    "category": "OS",
+    "choices": ["Windows", "zig mark", "Bun", "PHP"],
+    "hint": "The logo for Microsoft Windows, a family of operating systems developed by Microsoft."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/OS/debian.svg",
+    "answer": "debian",
+    "category": "OS",
+    "choices": ["Windows Terminal", "debian", "Android", "Flutter"],
+    "hint": "A Unix-like operating system composed entirely of free software, developed by the Debian Project."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Org/GDG.png",
+    "answer": "GDG",
+    "category": "Org",
+    "choices": ["GDG", "Typescript", "Stack Overflow", "Webpack"],
+    "hint": "Google Developer Groups: community groups for developers interested in Google technologies."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Org/Google.svg",
+    "answer": "Google",
+    "category": "Org",
+    "choices": ["TensorFlow", "Google", "Webpack", "Facebook"],
+    "hint": "A multinational technology company specializing in Internet-related services and products."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Org/microsoft.png",
+    "answer": "microsoft",
+    "category": "Org",
+    "choices": ["Lua", "HTML", "microsoft", "LinkedIn"],
+    "hint": "A multinational technology corporation, developer of Windows, Office, and Azure."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/C#.svg",
+    "answer": "C#",
+    "category": "Programming_Languages",
+    "choices": ["C#", "Electron", "Google", "Ruby on Rails"],
+    "hint": "A modern, object-oriented programming language developed by Microsoft."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/C++.svg",
+    "answer": "C++",
+    "category": "Programming_Languages",
+    "choices": ["Facebook", "C++", "Chrome", "Ubuntu"],
+    "hint": "A general-purpose programming language created by Bjarne Stroustrup as an extension of C."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/C.svg",
+    "answer": "C",
+    "category": "Programming_Languages",
+    "choices": ["C", "Windows Terminal", "Facebook", "Bash"],
+    "hint": "A general-purpose, procedural computer programming language developed in the early 1970s."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/CSS.svg",
+    "answer": "CSS",
+    "category": "Programming_Languages",
+    "choices": ["Kotlin", "Express", "CSS", "Twitter"],
+    "hint": "A style sheet language used for describing the presentation of a document written in HTML or XML."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Dart.svg",
+    "answer": "Dart",
+    "category": "Programming_Languages",
+    "choices": ["Dart", "Mysql", "Webpack", "Kotlin"],
+    "hint": "A client-optimized programming language for fast apps on any platform, developed by Google."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Erlang.svg",
+    "answer": "Erlang",
+    "category": "Programming_Languages",
+    "choices": ["C", "NPM", "Erlang", "Python"],
+    "hint": "A general-purpose, concurrent, functional programming language, used for scalable systems."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Fortran.svg",
+    "answer": "Fortran",
+    "category": "Programming_Languages",
+    "choices": ["Fortran", "Apple Safari", "ChatGPT", "React"],
+    "hint": "A general-purpose, compiled imperative programming language, especially suited to numeric computation."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Go.svg",
+    "answer": "Go",
+    "category": "Programming_Languages",
+    "choices": ["Flutter", "Swift", "Go", "Express"],
+    "hint": "An open-source programming language designed at Google for simplicity and reliability."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/HTML.svg",
+    "answer": "HTML",
+    "category": "Programming_Languages",
+    "choices": ["NPM", "HTML", "Twitter", "Ruby"],
+    "hint": "The standard markup language for documents designed to be displayed in a web browser."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Java.svg",
+    "answer": "Java",
+    "category": "Programming_Languages",
+    "choices": ["Java", "Yarn", "Webpack", "LinkedIn"],
+    "hint": "A high-level, class-based, object-oriented programming language developed by Sun Microsystems."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Javascript.svg",
+    "answer": "Javascript",
+    "category": "Programming_Languages",
+    "choices": ["Javascript", "Express", "Node.js", "Erlang"],
+    "hint": "A high-level, just-in-time compiled language that conforms to the ECMAScript specification."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Kotlin.svg",
+    "answer": "Kotlin",
+    "category": "Programming_Languages",
+    "choices": ["Swift", "Rust", "Twitter", "Kotlin"],
+    "hint": "A cross-platform, statically typed, general-purpose programming language with type inference."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Lua.svg",
+    "answer": "Lua",
+    "category": "Programming_Languages",
+    "choices": ["Typescript", "Lua", "MongoDB", "Bash"],
+    "hint": "A lightweight, high-level, multi-paradigm programming language designed primarily for embedded use."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/PHP.svg",
+    "answer": "PHP",
+    "category": "Programming_Languages",
+    "choices": ["Typescript", "Apple", "Lua", "PHP"],
+    "hint": "A popular general-purpose scripting language especially suited to web development."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Python.svg",
+    "answer": "Python",
+    "category": "Programming_Languages",
+    "choices": ["Python", "Jest", "Webpack", "Twitter"],
+    "hint": "An interpreted, high-level, general-purpose programming language created by Guido van Rossum."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Ruby.svg",
+    "answer": "Ruby",
+    "category": "Programming_Languages",
+    "choices": ["Ruby", "Ruby on Rails", "Android Studio", "PostgresSQL"],
+    "hint": "A dynamic, open source programming language with a focus on simplicity and productivity."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Rust.svg",
+    "answer": "Rust",
+    "category": "Programming_Languages",
+    "choices": ["Flutter", "Jest", "Javascript", "Rust"],
+    "hint": "A multi-paradigm, general-purpose programming language focused on performance and safety."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Swift.svg",
+    "answer": "Swift",
+    "category": "Programming_Languages",
+    "choices": ["Swift", "PostgresSQL", "Mysql", "V8"],
+    "hint": "A powerful and intuitive programming language for macOS, iOS, watchOS, and tvOS, developed by Apple."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/Typescript.svg",
+    "answer": "Typescript",
+    "category": "Programming_Languages",
+    "choices": ["Typescript", "Homebrew", "Chrome", "Firebase"],
+    "hint": "A strongly typed programming language that builds on JavaScript, developed by Microsoft."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Programming_Languages/zig-mark.svg",
+    "answer": "zig mark",
+    "category": "Programming_Languages",
+    "choices": ["Blender", "Vite.js", "Raspberry Pi", "zig mark"],
+    "hint": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Random/Raspberry Pi.svg",
+    "answer": "Raspberry Pi",
+    "category": "Random",
+    "choices": [
+      "Twitter",
+      "Raspberry Pi",
+      "Android Studio",
+      "Internet Explorer"
+    ],
+    "hint": "A series of small single-board computers developed in the United Kingdom by the Raspberry Pi Foundation."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Runtime/Bun.svg",
+    "answer": "Bun",
+    "category": "Runtime",
+    "choices": ["Bun", "Angular", "Jest", "Homebrew"],
+    "hint": "A fast JavaScript runtime, bundler, transpiler, and package manager – all in one."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Runtime/Node.js.svg",
+    "answer": "Node.js",
+    "category": "Runtime",
+    "choices": ["Powershell", "ESLint", "Bash", "Node.js"],
+    "hint": "An open-source, cross-platform JavaScript runtime environment that executes JavaScript code outside a web browser."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Runtime/V8.svg",
+    "answer": "V8",
+    "category": "Runtime",
+    "choices": ["Dart", "V8", "Powershell", "Python"],
+    "hint": "Google's open source high-performance JavaScript and WebAssembly engine, written in C++."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Social_Media/Facebook.svg",
+    "answer": "Facebook",
+    "category": "Social_Media",
+    "choices": ["Facebook", "ChatGPT", "Mysql", "Kotlin"],
+    "hint": "A social networking service launched in 2004, owned by Meta Platforms."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Social_Media/LinkedIn.svg",
+    "answer": "LinkedIn",
+    "category": "Social_Media",
+    "choices": ["Postman", "LinkedIn", "Github", "Jest"],
+    "hint": "A business and employment-focused social media platform launched in 2003."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Social_Media/Twitter.svg",
+    "answer": "Twitter",
+    "category": "Social_Media",
+    "choices": ["Raspberry Pi", "Windows Terminal", "Twitter", "Chrome"],
+    "hint": "A social media platform for microblogging and social networking, now known as X."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Terminals/Bash.svg",
+    "answer": "Bash",
+    "category": "Terminals",
+    "choices": ["Youtube", "Go", "Bash", "Ubuntu"],
+    "hint": "A Unix shell and command language written by Brian Fox for the GNU Project."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Terminals/Homebrew.svg",
+    "answer": "Homebrew",
+    "category": "Terminals",
+    "choices": ["Raspberry Pi", "Bash", "Homebrew", "Twitter"],
+    "hint": "A free and open-source software package management system that simplifies the installation of software on macOS and Linux."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Terminals/Powershell.svg",
+    "answer": "Powershell",
+    "category": "Terminals",
+    "choices": ["Powershell", "Lua", "NET core", "ESLint"],
+    "hint": "A task automation and configuration management program from Microsoft, consisting of a command-line shell and scripting language."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Terminals/Windows-Terminal.svg",
+    "answer": "Windows Terminal",
+    "category": "Terminals",
+    "choices": ["Windows Terminal", "PostgresSQL", "VueJs", "Windows defender"],
+    "hint": "A modern terminal application for users of command-line tools and shells on Windows."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/Apache.svg",
+    "answer": "Apache",
+    "category": "Tools",
+    "choices": ["NextJS", "Apache", "Android Studio", "Rust"],
+    "hint": "A free and open-source cross-platform web server software, developed and maintained by the Apache Software Foundation."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/ESLint.svg",
+    "answer": "ESLint",
+    "category": "Tools",
+    "choices": ["Apple Safari", "Windows Terminal", "Erlang", "ESLint"],
+    "hint": "A static code analysis tool for identifying problematic patterns in JavaScript code."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/Git.svg",
+    "answer": "Git",
+    "category": "Tools",
+    "choices": ["Git", "Swift", "Node.js", "Laravel"],
+    "hint": "A distributed version control system created by Linus Torvalds in 2005."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/Jest.svg",
+    "answer": "Jest",
+    "category": "Tools",
+    "choices": ["Swift", "Google", "Apple", "Jest"],
+    "hint": "A delightful JavaScript testing framework maintained by Meta."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/Mysql.svg",
+    "answer": "Mysql",
+    "category": "Tools",
+    "choices": ["Google Cloud", "C++", "Typescript", "Mysql"],
+    "hint": "An open-source relational database management system based on SQL."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/NPM.svg",
+    "answer": "NPM",
+    "category": "Tools",
+    "choices": ["Youtube", "Apache", "NPM", "Windows"],
+    "hint": "A package manager for the JavaScript programming language, maintained by npm, Inc."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/PostgresSQL.svg",
+    "answer": "PostgresSQL",
+    "category": "Tools",
+    "choices": ["PostgresSQL", "NPM", "Facebook", "Go"],
+    "hint": "A powerful, open source object-relational database system with over 30 years of active development."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/Vite.js.svg",
+    "answer": "Vite.js",
+    "category": "Tools",
+    "choices": ["Vite.js", "Blender", "Yarn", "Spotify"],
+    "hint": "A build tool that aims to provide a faster and leaner development experience for modern web projects."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/Webpack.svg",
+    "answer": "Webpack",
+    "category": "Tools",
+    "choices": ["Python", "Webpack", "Github", "Git"],
+    "hint": "An open-source JavaScript module bundler, primarily for JavaScript, but can transform front-end assets."
+  },
+  {
+    "question": "Which technology does this logo represent?",
+    "image": "/Tools/Yarn.svg",
+    "answer": "Yarn",
+    "category": "Tools",
+    "choices": ["Java", "ChatGPT", "Ruby", "Yarn"],
+    "hint": "A package manager for code, developed by Facebook to address shortcomings of npm."
+  }
+]
