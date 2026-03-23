@@ -65,7 +65,7 @@ function MusicSelector() {
 
   return (
     <div className="flex items-center gap-3">
-      <div className="flex items-center gap-2 bg-gradient-to-r from-slate-800 to-slate-700 px-3 py-1 rounded-lg ring-1 ring-slate-700">
+      <div className="flex items-center gap-2 bg-linear-to-r from-slate-800 to-slate-700 px-3 py-1 rounded-lg ring-1 ring-slate-700">
         <Music className="text-slate-100" />
         <select
           value={selected || ""}

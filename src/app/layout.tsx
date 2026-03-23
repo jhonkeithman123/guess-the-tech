@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <FloatingShapesClient />
         <AudioInitializer />
         <AudioEnableButton />
-        <AudioDebugOverlay />
+        {process.env.NODE_ENV !== "production" && <AudioDebugOverlay />}
         {children}
       </body>
     </html>
