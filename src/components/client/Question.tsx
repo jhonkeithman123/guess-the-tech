@@ -8,6 +8,7 @@ interface QuestionProps {
   hint: string;
   choices: string[];
   onAnswer: (choice: string) => void;
+  onImageReady?: () => void;
   showLogo?: boolean;
 }
 
@@ -17,6 +18,7 @@ export default function Question({
   hint,
   choices,
   onAnswer,
+  onImageReady,
   showLogo = true,
 }: QuestionProps) {
   // Encode each path segment to ensure characters like '#' are percent-encoded
@@ -37,21 +39,35 @@ export default function Question({
     }
   }, [safePath, showLogo]);
 
+  // If there's no logo to load, notify immediately so the parent can start timers
+  useEffect(() => {
+    if (!showLogo || !logo_path) {
+      try {
+        onImageReady && onImageReady();
+      } catch (e) {}
+    }
+  }, [showLogo, logo_path, onImageReady]);
+
   return (
     <div className="space-y-6">
       {showLogo && logo_path && (
-        <div className="relative flex items-center justify-center mx-auto h-48 w-48">
+        <div className="relative flex items-center justify-center mx-auto h-28 w-28 sm:h-48 sm:w-48">
           {/* White platform for visibility (now a square) */}
           <div
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-44 h-44 shadow-md z-0 rounded"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-24 h-24 sm:w-44 sm:h-44 shadow-md z-0 rounded"
             style={{ filter: "blur(1.5px)" }}
           ></div>
           {/* Use <img> for SVGs too but ensure path is URI-encoded to avoid '#' issues */}
           <img
             src={safePath}
             alt="logo"
-            className="relative z-10 h-40 w-40 object-contain"
+            className="relative z-10 h-20 w-20 sm:h-40 sm:w-40 object-contain"
             style={{ display: "block" }}
+            onLoad={() => {
+              try {
+                onImageReady && onImageReady();
+              } catch (e) {}
+            }}
             onError={(e) => {
               const el = e.currentTarget as HTMLImageElement;
               // fallback: try a likely alternate filename (CS.svg) if C#.svg missing
@@ -65,19 +81,24 @@ export default function Question({
                 const parts = el.src.split("/");
                 parts[parts.length - 1] = "CS.svg";
                 el.src = parts.join("/");
+              } else {
+                // final failure: still notify parent so it can start timer
+                try {
+                  onImageReady && onImageReady();
+                } catch (e) {}
               }
             }}
           />
         </div>
       )}
-      <div className="text-3xl font-semibold mb-2">{question}</div>
-      <div className="text-lg text-slate-400 mb-4">{hint}</div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="text-2xl sm:text-3xl font-semibold mb-2">{question}</div>
+      <div className="text-sm sm:text-lg text-slate-400 mb-4">{hint}</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {choices.map((choice) => (
           <button
             key={choice}
             onClick={() => onAnswer(choice)}
-            className="px-6 py-4 text-lg rounded bg-slate-800 hover:bg-emerald-500 hover:text-slate-900 transition-colors border border-slate-700 font-mono"
+            className="w-full px-3 py-2 text-sm sm:text-base rounded bg-slate-800 hover:bg-emerald-500 hover:text-slate-900 transition-colors border border-slate-700 font-mono"
           >
             {choice}
           </button>

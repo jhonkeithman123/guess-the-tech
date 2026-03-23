@@ -18,7 +18,7 @@ const colors = {
   blue: "#4285F4",
   red: "#EA4335",
   yellow: "#FBBC04",
-  green: "#34A853",
+  green: "#34D399",
 };
 
 export default function ClientLeaderboard() {
@@ -177,7 +177,15 @@ export default function ClientLeaderboard() {
                             {row.player_name}
                           </td>
                           <td className="p-5 text-center font-black text-xl">
-                            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-green-400">
+                            <span
+                              className="bg-clip-text text-transparent bg-linear-to-r from-blue-300 to-green-300"
+                              style={{
+                                WebkitTextStroke: "0.25px rgba(0,0,0,0.6)",
+                                textShadow:
+                                  "0 0 6px rgba(255,255,255,0.06), 0 1px 0 rgba(0,0,0,0.18)",
+                                WebkitFontSmoothing: "antialiased",
+                              }}
+                            >
                               {row.score} pts
                             </span>
                           </td>

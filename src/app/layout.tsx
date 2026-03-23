@@ -5,6 +5,9 @@ export const metadata = {
   },
   description:
     "A GDG-themed quiz game. Identify technologies, face progressive difficulty, and climb the leaderboard!",
+  icons: {
+    icon: "/icon/favicon.ico",
+  },
 };
 import FloatingShapesClient from "@/components/client/FloatingShapesClient";
 import AudioInitializer from "@/components/client/AudioInitializer";
