@@ -8,6 +8,7 @@ interface QuestionProps {
   hint: string;
   choices: string[];
   onAnswer: (choice: string) => void;
+  onImageReady?: () => void;
   showLogo?: boolean;
 }
 
@@ -17,6 +18,7 @@ export default function Question({
   hint,
   choices,
   onAnswer,
+  onImageReady,
   showLogo = true,
 }: QuestionProps) {
   // Encode each path segment to ensure characters like '#' are percent-encoded
@@ -37,6 +39,15 @@ export default function Question({
     }
   }, [safePath, showLogo]);
 
+  // If there's no logo to load, notify immediately so the parent can start timers
+  useEffect(() => {
+    if (!showLogo || !logo_path) {
+      try {
+        onImageReady && onImageReady();
+      } catch (e) {}
+    }
+  }, [showLogo, logo_path, onImageReady]);
+
   return (
     <div className="space-y-6">
       {showLogo && logo_path && (
@@ -52,6 +63,11 @@ export default function Question({
             alt="logo"
             className="relative z-10 h-40 w-40 object-contain"
             style={{ display: "block" }}
+            onLoad={() => {
+              try {
+                onImageReady && onImageReady();
+              } catch (e) {}
+            }}
             onError={(e) => {
               const el = e.currentTarget as HTMLImageElement;
               // fallback: try a likely alternate filename (CS.svg) if C#.svg missing
@@ -65,6 +81,11 @@ export default function Question({
                 const parts = el.src.split("/");
                 parts[parts.length - 1] = "CS.svg";
                 el.src = parts.join("/");
+              } else {
+                // final failure: still notify parent so it can start timer
+                try {
+                  onImageReady && onImageReady();
+                } catch (e) {}
               }
             }}
           />

@@ -40,6 +40,7 @@ export default function PlayClient() {
   // Timer is computed from the question count (decays every `decayInterval` questions)
   const timer = getTimerForQuestionNumber(effectiveQuestionCount);
   const [timerLeft, setTimerLeft] = useState(timer);
+  const [imageReady, setImageReady] = useState(false);
   // For smooth animation
   const [smoothProgress, setSmoothProgress] = useState(0); // 0=start, 1=end
   // Precise end time for rAF-driven countdown
@@ -85,9 +86,11 @@ export default function PlayClient() {
   useEffect(() => {
     setTimerLeft(timer);
     setSmoothProgress(0);
-    // only set endTime when the game is active to avoid stale expired times
-    if (standby) {
+    // only set endTime when the game is active and image has loaded
+    if (standby && imageReady) {
       setEndTime(performance.now() + timer * 1000);
+    } else {
+      setEndTime(null);
     }
   }, [idx, timer, standby]);
 
@@ -96,7 +99,7 @@ export default function PlayClient() {
     if (standby) {
       setTimerLeft(timer);
       setSmoothProgress(0);
-      setEndTime(performance.now() + timer * 1000);
+      if (imageReady) setEndTime(performance.now() + timer * 1000);
       // reset expire guard when starting a new game/session
       expireRef.current = false;
       // mark the initial question as seen and start question counter
@@ -129,13 +132,30 @@ export default function PlayClient() {
   useEffect(() => {
     if (paused) return;
     if (!standby) return;
-    // resuming: restore endTime from stored remaining
+    // resuming: restore endTime from stored remaining only when image is ready
     const remaining = pausedRemainingRef.current ?? timerLeft * 1000;
-    setEndTime(performance.now() + Math.max(0, remaining));
-    pausedRemainingRef.current = null;
+    if (imageReady) {
+      setEndTime(performance.now() + Math.max(0, remaining));
+      pausedRemainingRef.current = null;
+    } else {
+      // keep remaining stored until image loads
+      pausedRemainingRef.current = remaining;
+      setEndTime(null);
+    }
     // run when `paused` or `standby` changes to resume
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paused, standby]);
+
+  // When image becomes ready, start the timer if appropriate
+  useEffect(() => {
+    if (!imageReady) return;
+    if (!standby) return;
+    if (paused) return;
+    // start/resume timer using stored remaining or full timer
+    const remaining = pausedRemainingRef.current ?? timerLeft * 1000;
+    setEndTime(performance.now() + Math.max(0, remaining));
+    pausedRemainingRef.current = null;
+  }, [imageReady, standby, paused, timerLeft]);
 
   // Smooth animation effect driven by `endTime` to avoid re-running each tick
   useEffect(() => {
@@ -773,6 +793,7 @@ export default function PlayClient() {
               Array.isArray(q.choices) ? q.choices : JSON.parse(q.choices)
             }
             onAnswer={handleAnswer}
+            onImageReady={() => setImageReady(true)}
             showLogo={true}
           />
           {(answered || expired) && (
