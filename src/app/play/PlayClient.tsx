@@ -6,13 +6,16 @@ import Question from "@/components/client/Question";
 import audioManager from "@/lib/audio";
 
 export default function PlayClient() {
-  function getTimerForIndex(i: number) {
-    if (i >= 130) return 1;
-    if (i >= 100) return 2;
-    if (i >= 70) return 4;
-    if (i >= 50) return 5;
-    if (i >= 30) return 6;
-    return 8;
+  // Base per-question timer (editable at runtime). Starts at 10s by default.
+  const [baseQuestionTimer, setBaseQuestionTimer] = useState<number>(10);
+  // How many questions between each -1s decay (default 5)
+  const [decayInterval, setDecayInterval] = useState<number>(5);
+
+  // Determine per-question timer based on question count.
+  // Starts at `baseQuestionTimer` and decreases by 1s every 5 questions (min 1s).
+  function getTimerForQuestionNumber(n: number) {
+    const dec = Math.floor(n / decayInterval);
+    return Math.max(1, baseQuestionTimer - dec);
   }
 
   const [questions, setQuestions] = useState<any[]>([]);
@@ -32,7 +35,10 @@ export default function PlayClient() {
   const [showUserPrompt, setShowUserPrompt] = useState(false);
   const [newUsername, setNewUsername] = useState("");
   // Timer progress for green light (must be before any return)
-  const timer = getTimerForIndex(idx);
+  // Compute effective question count from `idx` (current question index + 1)
+  const effectiveQuestionCount = Math.max(1, idx + 1);
+  // Timer is computed from the question count (decays every `decayInterval` questions)
+  const timer = getTimerForQuestionNumber(effectiveQuestionCount);
   const [timerLeft, setTimerLeft] = useState(timer);
   // For smooth animation
   const [smoothProgress, setSmoothProgress] = useState(0); // 0=start, 1=end
@@ -57,6 +63,24 @@ export default function PlayClient() {
     // in response to a user gesture per browser autoplay policy.
   }, []);
 
+  // Expose helpers for quick runtime adjustment (dev use)
+  useEffect(() => {
+    try {
+      (window as any).setBaseQuestionTimer = setBaseQuestionTimer;
+      (window as any).getBaseQuestionTimer = () => baseQuestionTimer;
+      (window as any).setDecayInterval = setDecayInterval;
+      (window as any).getDecayInterval = () => decayInterval;
+    } catch (e) {}
+    return () => {
+      try {
+        delete (window as any).setBaseQuestionTimer;
+        delete (window as any).getBaseQuestionTimer;
+        delete (window as any).setDecayInterval;
+        delete (window as any).getDecayInterval;
+      } catch (e) {}
+    };
+  }, [baseQuestionTimer, decayInterval]);
+
   // When idx changes (new question), reset timerLeft and smoothProgress
   useEffect(() => {
     setTimerLeft(timer);
@@ -65,7 +89,7 @@ export default function PlayClient() {
     if (standby) {
       setEndTime(performance.now() + timer * 1000);
     }
-  }, [idx, timer]);
+  }, [idx, timer, standby]);
 
   // Ensure timer is reset when the player actually starts the game
   useEffect(() => {
@@ -197,6 +221,8 @@ export default function PlayClient() {
       console.error("Failed to submit leaderboard:", e);
     }
   }
+  // Victory condition: surviving 2 minutes or reaching max questions
+  // Removed global 2-minute victory timer: per-question timers now govern flow.
   // When the game ends, ensure the timer stops and no further expire actions occur
   useEffect(() => {
     if (!showResult) return;
@@ -386,9 +412,15 @@ export default function PlayClient() {
           <div className="text-xl mb-4">Get ready to play Guess the Tech!</div>
           <form
             className="flex flex-col items-center gap-4 mb-6"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
               if (usernameInput.trim()) {
+                try {
+                  await audioManager.enableAudioContext();
+                  await audioManager.loadManifest();
+                  // preload SFX to reduce first-play latency
+                  await audioManager.preloadSfx();
+                } catch (e) {}
                 setUsername(usernameInput.trim());
                 setStartTime(Date.now());
                 setStandby(true);
@@ -743,14 +775,22 @@ export default function PlayClient() {
             onAnswer={handleAnswer}
             showLogo={true}
           />
-          {expired && (
-            <div className="text-red-400 font-bold mt-4">Time's up!</div>
-          )}
-          {answered && !expired && lastCorrect === true && (
-            <div className="text-emerald-400 font-bold mt-4">Correct!</div>
-          )}
-          {answered && !expired && lastCorrect === false && (
-            <div className="text-red-400 font-bold mt-4">Wrong!</div>
+          {(answered || expired) && (
+            <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none">
+              <div
+                className={`px-6 py-4 rounded-xl text-3xl font-extrabold shadow-xl ${
+                  lastCorrect
+                    ? "bg-emerald-500 text-white"
+                    : "bg-red-600 text-white"
+                }`}
+              >
+                {expired
+                  ? `Time's up — Correct: ${String(q.answer)}`
+                  : lastCorrect
+                    ? "Correct!"
+                    : `Wrong — Correct: ${String(q.answer)}`}
+              </div>
+            </div>
           )}
         </div>
       </div>

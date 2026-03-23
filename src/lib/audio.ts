@@ -50,6 +50,33 @@ class AudioManager {
     }
   }
 
+  // Preload SFX into HTMLAudio elements to reduce first-play latency.
+  async preloadSfx() {
+    try {
+      const sfx = this.manifest.sfx || {};
+      for (const cat of Object.keys(sfx)) {
+        const urls = sfx[cat] || [];
+        for (const url of urls) {
+          try {
+            const a = new Audio(url);
+            a.preload = "auto";
+            a.volume = this.sfxVolume;
+            // call load to hint the browser to fetch
+            try {
+              a.load();
+            } catch (e) {}
+            // keep in pool to reuse for lower latency
+            this.htmlAudioPool.push(a);
+          } catch (e) {
+            // ignore individual failures
+          }
+        }
+      }
+    } catch (e) {
+      console.error("AudioManager.preloadSfx failed", e);
+    }
+  }
+
   setManifest(manifest: Manifest) {
     this.manifest = manifest || { music: [], sfx: {} };
   }

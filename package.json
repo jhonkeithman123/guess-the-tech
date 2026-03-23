@@ -9,7 +9,7 @@
     "clean": "node scripts/clean.js",
     "build": "NODE_ENV=production bunx next build",
     "vercel-build": "node scripts/check-supabase.js && next build",
-    "start": "bunx next start",
+    "start": "NODE_ENV=production bunx next start",
     "dev:t": "bunx turbo run dev",
     "build:t": "bunx turbo run build",
     "start:t": "bunx turbo run start",
