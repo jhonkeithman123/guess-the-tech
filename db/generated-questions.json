@@ -4,7 +4,7 @@
     "image": "/AI/ChatGPT.svg",
     "answer": "ChatGPT",
     "category": "AI",
-    "choices": ["Windows Terminal", "Windows defender", "ChatGPT", "VueJs"],
+    "choices": ["Windows Terminal", "Windows Defender", "ChatGPT", "VueJs"],
     "hint": "An AI chatbot developed by OpenAI, based on the GPT architecture."
   },
   {
@@ -89,7 +89,7 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Apps/Unreal-Engine.svg",
+    "image": "/Apps/Unreal Engine.svg",
     "answer": "Unreal Engine",
     "category": "Apps",
     "choices": ["Unreal Engine", "Mysql", "Rust", "Blender"],
@@ -97,10 +97,10 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Apps/Windows-defender.svg",
-    "answer": "Windows defender",
+    "image": "/Apps/Windows Defender.svg",
+    "answer": "Windows Defender",
     "category": "Apps",
-    "choices": ["Windows defender", "PHP", "Youtube", "Angular"],
+    "choices": ["Windows Defender", "PHP", "Youtube", "Angular"],
     "hint": "A built-in antivirus and security suite for Microsoft Windows operating systems."
   },
   {
@@ -137,7 +137,7 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Browser/Internet-Explorer.svg",
+    "image": "/Browser/Internet Explorer.svg",
     "answer": "Internet Explorer",
     "category": "Browser",
     "choices": ["Internet Explorer", "Rust", "Blender", "Stack Overflow"],
@@ -196,7 +196,7 @@
     "image": "/Frameworks/Express.svg",
     "answer": "Express",
     "category": "Frameworks",
-    "choices": ["Python", "zig mark", "ESLint", "Express"],
+    "choices": ["Python", "Zig", "ESLint", "Express"],
     "hint": "A minimal and flexible Node.js web application framework for building APIs and web apps."
   },
   {
@@ -225,10 +225,10 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Frameworks/Nest.js.svg",
-    "answer": "Nest.js",
+    "image": "/Frameworks/NestJs.svg",
+    "answer": "NestJs",
     "category": "Frameworks",
-    "choices": ["PyCharm", "Nest.js", "Vite.js", "Webpack"],
+    "choices": ["PyCharm", "NestJs", "Vite", "Webpack"],
     "hint": "A progressive Node.js framework for building efficient, scalable server-side applications."
   },
   {
@@ -300,7 +300,7 @@
     "image": "/IDE/Android Studio.svg",
     "answer": "Android Studio",
     "category": "IDE",
-    "choices": ["Webpack", "Windows defender", "Android Studio", "Youtube"],
+    "choices": ["Webpack", "Windows Defender", "Android Studio", "Youtube"],
     "hint": "The official IDE for Android development, based on JetBrains' IntelliJ IDEA."
   },
   {
@@ -340,7 +340,7 @@
     "image": "/IDE/Visual Studio.svg",
     "answer": "Visual Studio",
     "category": "IDE",
-    "choices": ["GitLab", "Vite.js", "Svelte", "Visual Studio"],
+    "choices": ["GitLab", "Vite", "Svelte", "Visual Studio"],
     "hint": "An integrated development environment (IDE) from Microsoft."
   },
   {
@@ -364,7 +364,7 @@
     "image": "/OS/Arch Linux.svg",
     "answer": "Arch Linux",
     "category": "OS",
-    "choices": ["Typescript", "Nest.js", "Blender", "Arch Linux"],
+    "choices": ["Typescript", "NestJs", "Blender", "Arch Linux"],
     "hint": "A lightweight and flexible Linux distribution that tries to Keep It Simple."
   },
   {
@@ -396,7 +396,7 @@
     "image": "/OS/Windows.svg",
     "answer": "Windows",
     "category": "OS",
-    "choices": ["Windows", "zig mark", "Bun", "PHP"],
+    "choices": ["Windows", "Zig", "Bun", "PHP"],
     "hint": "The logo for Microsoft Windows, a family of operating systems developed by Microsoft."
   },
   {
@@ -425,7 +425,7 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Org/microsoft.png",
+    "image": "/Org/Microsoft.png",
     "answer": "Microsoft",
     "category": "Org",
     "choices": ["Lua", "HTML", "Microsoft", "LinkedIn"],
@@ -585,10 +585,10 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Programming_Languages/zig-mark.svg",
-    "answer": "zig mark",
+    "image": "/Programming_Languages/Zig.svg",
+    "answer": "Zig",
     "category": "Programming_Languages",
-    "choices": ["Blender", "Vite.js", "Raspberry Pi", "zig mark"],
+    "choices": ["Blender", "Vite", "Raspberry Pi", "Zig"],
     "hint": "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software."
   },
   {
@@ -678,10 +678,10 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Terminals/Windows-Terminal.svg",
+    "image": "/Terminals/Windows Terminal.svg",
     "answer": "Windows Terminal",
     "category": "Terminals",
-    "choices": ["Windows Terminal", "PostgresSQL", "VueJs", "Windows defender"],
+    "choices": ["Windows Terminal", "PostgresSQL", "VueJs", "Windows Defender"],
     "hint": "A modern terminal application for users of command-line tools and shells on Windows."
   },
   {
@@ -742,10 +742,10 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Tools/Vite.js.svg",
-    "answer": "Vite.js",
+    "image": "/Tools/Vite.svg",
+    "answer": "Vite",
     "category": "Tools",
-    "choices": ["Vite.js", "Blender", "Yarn", "Spotify"],
+    "choices": ["Vite", "Blender", "Yarn", "Spotify"],
     "hint": "A build tool that aims to provide a faster and leaner development experience for modern web projects."
   },
   {
