@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=production bunx next dev",
     "import:questions": "node scripts/import-questions.js",
     "clean": "node scripts/clean.js",
-    "build": "bunx next build",
+    "build": "NODE_ENV=production bunx next build",
     "vercel-build": "node scripts/check-supabase.js && next build",
     "start": "bunx next start",
     "dev:t": "bunx turbo run dev",
