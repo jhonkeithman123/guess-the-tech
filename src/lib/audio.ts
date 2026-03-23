@@ -19,6 +19,8 @@ class AudioManager {
   // fallback HTMLAudio for SFX or when WebAudio not available
   musicVolume = 0.5;
   sfxVolume = 1;
+  // currently-playing SFX element (we interrupt it when playing a new one)
+  currentSfx: HTMLAudioElement | null = null;
   // only create/resume AudioContext after an explicit user gesture
   userGestureAllowed: boolean = false;
 
@@ -267,10 +269,38 @@ class AudioManager {
       const pool = (this.manifest.sfx && this.manifest.sfx[category]) || [];
       if (!pool.length) return;
       const url = pool[Math.floor(Math.random() * pool.length)];
-      // For SFX use HTMLAudio for simplicity and low latency; can be improved later
+      // Interrupt any currently-playing effect so sounds don't stack
+      try {
+        if (this.currentSfx) {
+          try {
+            this.currentSfx.pause();
+          } catch (e) {}
+          try {
+            this.currentSfx.currentTime = 0;
+          } catch (e) {}
+          this.currentSfx = null;
+        }
+      } catch (e) {}
+
+      // For SFX use HTMLAudio for simplicity and low latency
       const audio = new Audio(url);
       audio.volume = this.sfxVolume;
-      audio.play().catch(() => {});
+      // keep reference so we can interrupt it on next play
+      this.currentSfx = audio;
+      // when it ends or errors, clear the reference
+      const clearRef = () => {
+        if (this.currentSfx === audio) this.currentSfx = null;
+        try {
+          audio.onended = null;
+          audio.onerror = null;
+        } catch (e) {}
+      };
+      audio.onended = clearRef;
+      audio.onerror = clearRef;
+      audio.play().catch(() => {
+        // if play fails, clear reference
+        clearRef();
+      });
     } catch (e) {
       console.error("AudioManager.playEffect error", e);
     }

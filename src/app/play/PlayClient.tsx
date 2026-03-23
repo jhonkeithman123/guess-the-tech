@@ -118,22 +118,21 @@ export default function PlayClient() {
   // Separate effects for pause and resume so they only run on pause transitions.
   useEffect(() => {
     if (!paused) return;
-    // compute remaining ms and store it
+    // compute remaining ms and store it. Use precise `timer` as the
+    // fallback (not `timerLeft`) to avoid rounding delays when starting.
     if (endTime) {
       pausedRemainingRef.current = Math.max(0, endTime - performance.now());
     } else {
-      pausedRemainingRef.current = timerLeft * 1000;
+      pausedRemainingRef.current = timer * 1000;
     }
     setEndTime(null);
-    // run only when `paused` becomes true
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paused]);
+  }, [paused, endTime, timer]);
 
   useEffect(() => {
     if (paused) return;
     if (!standby) return;
     // resuming: restore endTime from stored remaining only when image is ready
-    const remaining = pausedRemainingRef.current ?? timerLeft * 1000;
+    const remaining = pausedRemainingRef.current ?? timer * 1000;
     if (imageReady) {
       setEndTime(performance.now() + Math.max(0, remaining));
       pausedRemainingRef.current = null;
@@ -142,20 +141,19 @@ export default function PlayClient() {
       pausedRemainingRef.current = remaining;
       setEndTime(null);
     }
-    // run when `paused` or `standby` changes to resume
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paused, standby]);
+  }, [paused, standby, imageReady, timer]);
 
   // When image becomes ready, start the timer if appropriate
   useEffect(() => {
     if (!imageReady) return;
     if (!standby) return;
     if (paused) return;
-    // start/resume timer using stored remaining or full timer
-    const remaining = pausedRemainingRef.current ?? timerLeft * 1000;
+    // start/resume timer using stored remaining or full timer (use precise
+    // `timer` in ms as the fallback to avoid the small visual delay).
+    const remaining = pausedRemainingRef.current ?? timer * 1000;
     setEndTime(performance.now() + Math.max(0, remaining));
     pausedRemainingRef.current = null;
-  }, [imageReady, standby, paused, timerLeft]);
+  }, [imageReady, standby, paused, timer]);
 
   // Smooth animation effect driven by `endTime` to avoid re-running each tick
   useEffect(() => {
@@ -290,6 +288,11 @@ export default function PlayClient() {
   const handleAnswer = useCallback(
     (choice: string) => {
       if (answered || paused) return;
+      // stop the active timer immediately and prevent expire handler
+      try {
+        setEndTime(null);
+      } catch (e) {}
+      expireRef.current = true;
       const correct =
         questions[idx] &&
         choice.trim().toLowerCase() ===
@@ -312,6 +315,10 @@ export default function PlayClient() {
         setExpired(false);
         setPaused(false);
         setLastCorrect(null);
+        // allow expire handling again after we've advanced the question
+        expireRef.current = false;
+        // reset image ready flag so next question waits for load
+        setImageReady(false);
         // determine if this wrong answer caused game over based on
         // the health snapshot when the handler ran
         const willGameOver = !correct && health <= 1;
@@ -364,6 +371,8 @@ export default function PlayClient() {
       // advance to next question
       setAnswered(false);
       setExpired(false);
+      // reset image ready so the next question waits for its image
+      setImageReady(false);
       const nextIdx = getNextQuestionIdx();
       setQuestions((prev) => {
         const nextQ = { ...allQuestions[nextIdx] };
@@ -390,6 +399,7 @@ export default function PlayClient() {
     setHistory,
     setExpired,
     setAnswered,
+    setImageReady,
   ]);
 
   // rAF-driven, sub-second ticking while game is active
@@ -475,11 +485,7 @@ export default function PlayClient() {
               </li>
               <li>
                 For each logo, select the correct answer from four choices
-                before the timer runs out.
-              </li>
-              <li>Each question has a helpful hint if you get stuck.</li>
-              <li>
-                You have{" "}
+                before the timer runs out.{" "}
                 <span className="text-red-400 font-bold">4 health points</span>.
                 Each wrong answer costs 1 health.
               </li>
@@ -517,7 +523,7 @@ export default function PlayClient() {
     if (showEmailPrompt && !emailSubmitted) {
       return (
         <main className="min-h-screen flex flex-col items-center justify-center bg-transparent text-slate-200">
-          <div className="max-w-2xl w-full glass-card rounded-xl shadow-2xl p-10 space-y-6 text-center">
+          <div className="max-w-full sm:max-w-2xl w-full glass-card rounded-xl shadow-2xl p-6 sm:p-10 space-y-6 text-center">
             <h2 className="text-4xl font-bold text-emerald-400 mb-4">
               Game Over!
             </h2>
@@ -610,7 +616,7 @@ export default function PlayClient() {
           </div>
           <div className="flex flex-col gap-4 items-center">
             <button
-              className="px-6 py-3 rounded bg-emerald-400 text-slate-950 font-bold hover:bg-emerald-500 transition w-64"
+              className="px-6 py-3 rounded bg-emerald-400 text-slate-950 font-bold hover:bg-emerald-500 transition w-full sm:w-64"
               onClick={() => {
                 setIdx(0);
                 setScore(0);
@@ -628,7 +634,7 @@ export default function PlayClient() {
               Same User: {username}
             </button>
             <form
-              className="flex flex-col gap-2 w-64"
+              className="flex flex-col gap-2 w-full sm:w-64"
               onSubmit={(e) => {
                 e.preventDefault();
                 if (newUsername.trim()) {
@@ -684,7 +690,7 @@ export default function PlayClient() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-transparent text-slate-200 font-mono p-4">
-      <div className="max-w-4xl w-full glass-card rounded-xl shadow-2xl p-12 space-y-6 text-center relative overflow-hidden">
+      <div className="max-w-full sm:max-w-4xl w-full glass-card rounded-xl shadow-2xl p-6 sm:p-12 space-y-6 text-center relative overflow-hidden">
         {/* Gradient bar with moving green light */}
         {/* Shrinking gradient bar with moving green light */}
         {(() => {

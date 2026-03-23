@@ -14,7 +14,7 @@ export default function NotFound() {
         background: "#fff",
       }}
     >
-      <h1 style={{ fontSize: "3rem", color: "#EA4335", marginBottom: "1rem" }}>
+      <h1 style={{ fontSize: "3rem", color: "#C33D2F", marginBottom: "1rem" }}>
         404 - Page Not Found
       </h1>
       <p style={{ color: "#555", fontSize: "1.25rem", marginBottom: "2rem" }}>
@@ -23,7 +23,7 @@ export default function NotFound() {
       <Link
         href="/"
         style={{
-          color: "#4285F4",
+          color: "#3367C7",
           fontWeight: "bold",
           fontSize: "1.1rem",
           textDecoration: "underline",
