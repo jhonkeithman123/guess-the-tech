@@ -1,4 +1,6 @@
 "use client";
+import Link from "next/link";
+
 // This file renders a custom 404 page for the Next.js App Router
 export default function NotFound() {
   return (
@@ -18,7 +20,7 @@ export default function NotFound() {
       <p style={{ color: "#555", fontSize: "1.25rem", marginBottom: "2rem" }}>
         Sorry, the page you are looking for does not exist.
       </p>
-      <a
+      <Link
         href="/"
         style={{
           color: "#4285F4",
@@ -28,7 +30,7 @@ export default function NotFound() {
         }}
       >
         Go back home
-      </a>
+      </Link>
     </div>
   );
 }

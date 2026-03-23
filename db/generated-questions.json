@@ -84,7 +84,7 @@
     "image": "/Apps/Unity.svg",
     "answer": "Unity",
     "category": "Apps",
-    "choices": ["Ruby on Rails", "Rust", "Unity", "C# (CSharp)"],
+    "choices": ["Ruby on Rails", "Rust", "Unity", "CSharp"],
     "hint": "A cross-platform game engine developed by Unity Technologies, used for 2D and 3D games."
   },
   {
@@ -204,7 +204,7 @@
     "image": "/Frameworks/Flutter.svg",
     "answer": "Flutter",
     "category": "Frameworks",
-    "choices": ["Google", "Flutter", "LinkedIn", "C# (CSharp)"],
+    "choices": ["Google", "Flutter", "LinkedIn", "CSharp"],
     "hint": "An open-source UI software development kit created by Google for building natively compiled apps."
   },
   {
@@ -220,7 +220,7 @@
     "image": "/Frameworks/NET core.svg",
     "answer": "NET core",
     "category": "Frameworks",
-    "choices": ["debian", "Chrome", "Avast", "NET core"],
+    "choices": ["Debian", "Chrome", "Avast", "NET core"],
     "hint": "A cross-platform, open-source framework for building modern, cloud-based apps from Microsoft."
   },
   {
@@ -329,10 +329,10 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/IDE/Visual Studio Code (VS Code).svg",
-    "answer": "Visual Studio Code (VS Code)",
+    "image": "/IDE/VSCode.svg",
+    "answer": "VSCode",
     "category": "IDE",
-    "choices": ["Visual Studio Code (VS Code)", "Jest", "Postman", "Swift"],
+    "choices": ["VSCode", "Jest", "Postman", "Swift"],
     "hint": "A free source-code editor made by Microsoft for Windows, Linux, and macOS."
   },
   {
@@ -402,9 +402,9 @@
   {
     "question": "Which technology does this logo represent?",
     "image": "/OS/debian.svg",
-    "answer": "debian",
+    "answer": "Debian",
     "category": "OS",
-    "choices": ["Windows Terminal", "debian", "Android", "Flutter"],
+    "choices": ["Windows Terminal", "Debian", "Android", "Flutter"],
     "hint": "A Unix-like operating system composed entirely of free software, developed by the Debian Project."
   },
   {
@@ -426,17 +426,17 @@
   {
     "question": "Which technology does this logo represent?",
     "image": "/Org/microsoft.png",
-    "answer": "microsoft",
+    "answer": "Microsoft",
     "category": "Org",
-    "choices": ["Lua", "HTML", "microsoft", "LinkedIn"],
+    "choices": ["Lua", "HTML", "Microsoft", "LinkedIn"],
     "hint": "A multinational technology corporation, developer of Windows, Office, and Azure."
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Programming_Languages/C#.svg",
-    "answer": "C#",
+    "image": "/Programming_Languages/CS.svg",
+    "answer": "CSharp",
     "category": "Programming_Languages",
-    "choices": ["C#", "Electron", "Google", "Ruby on Rails"],
+    "choices": ["CSharp", "Electron", "Google", "Ruby on Rails"],
     "hint": "A modern, object-oriented programming language developed by Microsoft."
   },
   {

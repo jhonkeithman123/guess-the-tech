@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 interface QuestionProps {
   question: string;
@@ -17,6 +17,24 @@ export default function Question({
   onAnswer,
   showLogo = true,
 }: QuestionProps) {
+  // Encode each path segment to ensure characters like '#' are percent-encoded
+  const safePath = logo_path
+    ? logo_path
+        .split("/")
+        .map((seg) => encodeURIComponent(seg))
+        .join("/")
+    : "";
+
+  const imgSize = 160; // px
+  useEffect(() => {
+    if (safePath && showLogo) {
+      // Log the resolved/encoded path so we can debug broken images like C#
+      // Visible in browser console and server logs when rendering on client
+      // eslint-disable-next-line no-console
+      console.log("[Question] showing logo:", safePath);
+    }
+  }, [safePath, showLogo]);
+
   return (
     <div className="space-y-6">
       {showLogo && logo_path && (
@@ -26,29 +44,28 @@ export default function Question({
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-44 h-44 shadow-md z-0 rounded"
             style={{ filter: "blur(1.5px)" }}
           ></div>
-          {logo_path.endsWith(".svg") ? (
-            <object
-              data={logo_path}
-              type="image/svg+xml"
-              className="relative z-10 h-40 w-40 object-contain"
-              aria-label="logo"
-              style={{ display: "block" }}
-            >
-              <img
-                src={logo_path}
-                alt="logo"
-                className="relative z-10 h-40 w-40 object-contain"
-                style={{ display: "block" }}
-              />
-            </object>
-          ) : (
-            <img
-              src={logo_path}
-              alt="logo"
-              className="relative z-10 h-40 w-40 object-contain"
-              style={{ display: "block" }}
-            />
-          )}
+          {/* Use <img> for SVGs too but ensure path is URI-encoded to avoid '#' issues */}
+          <img
+            src={safePath}
+            alt="logo"
+            className="relative z-10 h-40 w-40 object-contain"
+            style={{ display: "block" }}
+            onError={(e) => {
+              const el = e.currentTarget as HTMLImageElement;
+              // fallback: try a likely alternate filename (CS.svg) if C#.svg missing
+              if (!el.dataset.fallbackTried) {
+                // eslint-disable-next-line no-console
+                console.warn(
+                  "[Question] image load failed, trying fallback for",
+                  el.src,
+                );
+                el.dataset.fallbackTried = "1";
+                const parts = el.src.split("/");
+                parts[parts.length - 1] = "CS.svg";
+                el.src = parts.join("/");
+              }
+            }}
+          />
         </div>
       )}
       <div className="text-3xl font-semibold mb-2">{question}</div>

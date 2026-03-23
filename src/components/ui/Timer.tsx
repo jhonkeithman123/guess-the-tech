@@ -2,32 +2,19 @@ import React, { useEffect, useState } from "react";
 
 interface TimerProps {
   seconds: number;
-  onExpire: () => void;
+  onExpire?: () => void;
   paused?: boolean;
+  onTick?: (timeLeft: number) => void;
 }
 
-export default function Timer({
-  seconds,
-  onExpire,
-  paused = false,
-}: TimerProps) {
-  const [time, setTime] = useState(seconds);
-
+function Timer({ seconds, onExpire, paused = false, onTick }: TimerProps) {
+  // Controlled display-only Timer. Parent manages ticking and expiration.
   useEffect(() => {
-    setTime(seconds);
-  }, [seconds]);
+    if (onTick) onTick(seconds);
+    // Do NOT call onExpire here; parent owns expiration to avoid double-calls
+  }, [seconds, onTick]);
 
-  useEffect(() => {
-    if (time <= 0) {
-      onExpire();
-      return;
-    }
-    if (paused) return;
-    const interval = setInterval(() => {
-      setTime((t) => t - 1);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [time, onExpire, paused]);
-
-  return <div className="text-2xl font-bold text-emerald-400">{time}s</div>;
+  return <div className="text-2xl font-bold text-emerald-400">{seconds}s</div>;
 }
+
+export default Timer;
