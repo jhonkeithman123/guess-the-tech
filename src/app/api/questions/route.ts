@@ -1,13 +1,18 @@
-// Force Node.js runtime for better-sqlite3 compatibility
-export const runtime = "nodejs";
-
-import Database from "better-sqlite3";
 import supabase from "@/lib/supabaseClient";
 
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const category = searchParams.get("category");
+
+    if (!supabase) {
+      return new Response(
+        JSON.stringify({
+          error: "Supabase not configured; set SUPABASE_URL and keys in env",
+        }),
+        { status: 503 },
+      );
+    }
 
     if (supabase) {
       // If category provided, accept either numeric id or slug
@@ -39,21 +44,23 @@ export async function GET(req: Request) {
       const { data, error } = await q;
       if (error) {
         console.error("[questions] supabase GET error", error);
-        return new Response(JSON.stringify({ error: error.message }), {
-          status: 500,
-        });
+        return new Response(
+          JSON.stringify({ error: (error as any)?.message ?? String(error) }),
+          {
+            status: 500,
+          },
+        );
       }
       return Response.json(data ?? []);
     }
 
-    const db = new Database("db/schema.sqlite3");
-    const rows = db.prepare("SELECT * FROM questions").all();
-    if (category) {
-      return Response.json(
-        rows.filter((r: any) => String(r.category_id) === String(category)),
-      );
-    }
-    return Response.json(rows);
+    // No sqlite fallback — handled above via Supabase
+    return new Response(
+      JSON.stringify({
+        error: "Supabase not configured; set SUPABASE_URL and keys in env",
+      }),
+      { status: 503 },
+    );
   } catch (err) {
     return Response.json({ error: (err as Error).message }, { status: 500 });
   }
