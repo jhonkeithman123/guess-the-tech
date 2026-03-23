@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { BouncyShape } from "./BouncyShape";
 
 const SHAPES = [
-  // Left column (vertical center area)
   {
     color: "#EA4335",
     className: "w-18 h-18 top-1/3 left-10 opacity-40",
@@ -38,8 +37,6 @@ const SHAPES = [
     delay: 13,
     children: "/Programming_Languages/Typescript.svg",
   },
-
-  // Right column (vertical center area)
   {
     color: "#4285F4",
     className: "w-22 h-22 top-1/3 right-12 opacity-40",
@@ -72,8 +69,6 @@ const SHAPES = [
     delay: 16,
     children: "/Programming_Languages/Javascript.svg",
   },
-
-  // Corner accents but kept away from header and center
   {
     color: "#EA4335",
     className: "w-20 h-20 bottom-10 right-36 opacity-30",

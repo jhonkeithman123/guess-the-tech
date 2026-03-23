@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
-import Timer from "@/components/ui/Timer";
-import Question from "@/components/ui/Question";
+import Timer from "@/components/client/ui/Timer";
+import Question from "@/components/client/ui/Question";
 
 export default function PlayClient() {
   function getTimerForIndex(i: number) {

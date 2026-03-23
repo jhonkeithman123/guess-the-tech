@@ -1,12 +1,6 @@
 "use client";
-// This file overrides the default Next.js global error boundary to prevent useContext errors during prerendering.
-export default function GlobalError({
-  error,
-  reset,
-}: {
-  error: Error;
-  reset: () => void;
-}) {
+// Client global error UI (required by Turbopack); keep client-safe.
+export default function GlobalError({ error }: { error: Error }) {
   return (
     <div
       style={{
@@ -22,22 +16,19 @@ export default function GlobalError({
         Something went wrong
       </h1>
       <p style={{ color: "#555", fontSize: "1.1rem", marginBottom: "2rem" }}>
-        {error.message}
+        {error?.message ?? "An unexpected error occurred."}
       </p>
-      <button
-        onClick={reset}
+      <a
+        href="/"
         style={{
           color: "#4285F4",
           fontWeight: "bold",
           fontSize: "1.1rem",
           textDecoration: "underline",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
         }}
       >
-        Try again
-      </button>
+        Go home
+      </a>
     </div>
   );
 }

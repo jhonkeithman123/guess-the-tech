@@ -2,10 +2,9 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { motion } from "framer-motion";
 import { ChevronRight, Trophy } from "lucide-react";
 import Link from "next/link";
-import { Logo } from "@/components/ui/Logo";
+import { Logo } from "@/components/server/ui/Logo";
 
 type LeaderboardRow = {
   player_name: string;
@@ -44,7 +43,7 @@ export default function ClientLeaderboard() {
       <div className="aurora-background" />
 
       {/* HEADER */}
-      <header className="w-full px-6 md:px-12 py-6 flex justify-between items-center glass-card sticky top-0 z-50">
+      <header className="w-full px-6 md:px-12 py-6 flex justify-between items-center glass-card sticky top-0 z-50 animate-fade-in-up">
         <div className="flex items-center gap-3">
           <Link
             href="/"
@@ -80,14 +79,14 @@ export default function ClientLeaderboard() {
               <span>Leaderboard</span>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400 pb-2">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400 pb-2 animate-fade-in-up">
               HALL OF FAME
             </h1>
 
             {/* DYNAMIC LEADERBOARD TABLE */}
             <div
               className="mt-12 glass-card rounded-3xl shadow-xl overflow-hidden border border-gray-700 max-w-4xl mx-auto animate-fade-in-up relative"
-              style={{ animationDelay: "0.2s" }}
+                style={{ animationDelay: "0.05s" }}
             >
               {/* Google Colors Top Strip */}
               <div className="absolute top-0 left-0 w-full h-1.5 flex">
@@ -156,7 +155,8 @@ export default function ClientLeaderboard() {
                       data.map((row, i) => (
                         <tr
                           key={row.timestamp}
-                          className="border-b border-gray-800 hover:bg-white/10 transition-colors"
+                          className="border-b border-gray-800 hover:bg-white/10 transition-colors animate-fade-in-up"
+                          style={{ animationDelay: `${i * 0.04}s` }}
                         >
                           <td className="p-5 text-center">
                             <span

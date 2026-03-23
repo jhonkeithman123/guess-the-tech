@@ -1,11 +1,12 @@
 {
   "name": "guess-the-tech-recreate",
+  "packageManager": "bun@1.0.0",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bunx next dev",
-    "build": "bunx next build",
-    "start": "bunx next start",
+    "dev:t": "bunx turbo run dev",
+    "build:t": "bunx turbo run build",
+    "start:t": "bunx turbo run start",
     "lint": "eslint"
   },
   "dependencies": {
@@ -15,7 +16,8 @@
     "lucide-react": "^0.577.0",
     "next": "16.2.1",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "turbo": "^2.8.20"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

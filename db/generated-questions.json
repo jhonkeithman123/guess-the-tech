@@ -76,7 +76,7 @@
     "image": "/Apps/Stack Overflow.svg",
     "answer": "Stack Overflow",
     "category": "Apps",
-    "choices": ["Node.js", "Facebook", "Stack Overflow", "Youtube"],
+    "choices": ["NodeJs", "Facebook", "Stack Overflow", "Youtube"],
     "hint": "A Q&A website for programmers, part of the Stack Exchange network."
   },
   {
@@ -197,7 +197,7 @@
     "answer": "Express",
     "category": "Frameworks",
     "choices": ["Python", "Zig", "ESLint", "Express"],
-    "hint": "A minimal and flexible Node.js web application framework for building APIs and web apps."
+    "hint": "A minimal and flexible NodeJs web application framework for building APIs and web apps."
   },
   {
     "question": "Which technology does this logo represent?",
@@ -229,14 +229,14 @@
     "answer": "NestJs",
     "category": "Frameworks",
     "choices": ["PyCharm", "NestJs", "Vite", "Webpack"],
-    "hint": "A progressive Node.js framework for building efficient, scalable server-side applications."
+    "hint": "A progressive NodeJs framework for building efficient, scalable server-side applications."
   },
   {
     "question": "Which technology does this logo represent?",
     "image": "/Frameworks/NextJS.svg",
     "answer": "NextJS",
     "category": "Frameworks",
-    "choices": ["Jest", "Node.js", "NextJS", "ChatGPT"],
+    "choices": ["Jest", "NodeJs", "NextJS", "ChatGPT"],
     "hint": "A React framework for building server-rendered and static web applications, developed by Vercel."
   },
   {
@@ -268,7 +268,7 @@
     "image": "/Frameworks/Svelte.svg",
     "answer": "Svelte",
     "category": "Frameworks",
-    "choices": ["Homebrew", "Svelte", "Swift", "Node.js"],
+    "choices": ["Homebrew", "Svelte", "Swift", "NodeJs"],
     "hint": "A modern JavaScript framework for building fast web applications, created by Rich Harris."
   },
   {
@@ -516,7 +516,7 @@
     "image": "/Programming_Languages/Javascript.svg",
     "answer": "Javascript",
     "category": "Programming_Languages",
-    "choices": ["Javascript", "Express", "Node.js", "Erlang"],
+    "choices": ["Javascript", "Express", "NodeJs", "Erlang"],
     "hint": "A high-level, just-in-time compiled language that conforms to the ECMAScript specification."
   },
   {
@@ -614,10 +614,10 @@
   },
   {
     "question": "Which technology does this logo represent?",
-    "image": "/Runtime/Node.js.svg",
-    "answer": "Node.js",
+    "image": "/Runtime/NodeJs.svg",
+    "answer": "NodeJs",
     "category": "Runtime",
-    "choices": ["Powershell", "ESLint", "Bash", "Node.js"],
+    "choices": ["Powershell", "ESLint", "Bash", "NodeJs"],
     "hint": "An open-source, cross-platform JavaScript runtime environment that executes JavaScript code outside a web browser."
   },
   {
@@ -705,7 +705,7 @@
     "image": "/Tools/Git.svg",
     "answer": "Git",
     "category": "Tools",
-    "choices": ["Git", "Swift", "Node.js", "Laravel"],
+    "choices": ["Git", "Swift", "NodeJs", "Laravel"],
     "hint": "A distributed version control system created by Linus Torvalds in 2005."
   },
   {
