@@ -1,0 +1,29 @@
+{
+  "music": [
+    "/audio/bg_music/fortnite_music_meme.mp3",
+    "/audio/bg_music/what_bottom_text_music.mp3"
+  ],
+  "sfx": {
+    "correct": [
+      "/audio/correct/correct.mp3",
+      "/audio/correct/correct2.mp3",
+      "/audio/correct/correct3.mp3",
+      "/audio/correct/correct4.mp3",
+      "/audio/correct/correct5.mp3",
+      "/audio/correct/correct6.mp3"
+    ],
+    "gameover": [
+      "/audio/gameover/gameover.mp3",
+      "/audio/gameover/gameover1.mp3",
+      "/audio/gameover/gameover3.mp3",
+      "/audio/gameover/gameover4.mp3",
+      "/audio/gameover/gameover5.mp3"
+    ],
+    "wrong": [
+      "/audio/wrong/wrong.mp3",
+      "/audio/wrong/wrong2.mp3",
+      "/audio/wrong/wrong3.mp3",
+      "/audio/wrong/wrong4.mp3"
+    ]
+  }
+}

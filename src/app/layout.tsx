@@ -6,7 +6,10 @@ export const metadata = {
   description:
     "A GDG-themed quiz game. Identify technologies, face progressive difficulty, and climb the leaderboard!",
 };
-import FloatingShapesClient from "@/components/client/ui/FloatingShapesClient";
+import FloatingShapesClient from "@/components/client/FloatingShapesClient";
+import AudioInitializer from "@/components/client/AudioInitializer";
+import AudioEnableButton from "@/components/client/AudioEnableButton";
+import AudioDebugOverlay from "@/components/client/AudioDebugOverlay";
 import "./globals.css";
 import type { ReactNode } from "react";
 
@@ -15,6 +18,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body>
         <FloatingShapesClient />
+        <AudioInitializer />
+        <AudioEnableButton />
+        <AudioDebugOverlay />
         {children}
       </body>
     </html>

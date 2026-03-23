@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
-import Timer from "@/components/client/ui/Timer";
-import Question from "@/components/client/ui/Question";
+import Timer from "@/components/client/Timer";
+import Question from "@/components/client/Question";
+import audioManager from "@/lib/audio";
 
 export default function PlayClient() {
   function getTimerForIndex(i: number) {
@@ -25,6 +26,7 @@ export default function PlayClient() {
   const [health, setHealth] = useState(4);
   const [username, setUsername] = useState("");
   const [usernameInput, setUsernameInput] = useState("");
+  const [startTime, setStartTime] = useState<number | null>(null);
   const [standby, setStandby] = useState(false);
   // Moved to top level to fix hook order
   const [showUserPrompt, setShowUserPrompt] = useState(false);
@@ -37,6 +39,23 @@ export default function PlayClient() {
   // Precise end time for rAF-driven countdown
   const [endTime, setEndTime] = useState<number | null>(null);
   const pausedRemainingRef = useRef<number | null>(null);
+
+  // On mount: restore persisted music selection when visiting /play
+  useEffect(() => {
+    try {
+      const sel =
+        typeof window !== "undefined"
+          ? localStorage.getItem("gtt_selected_music")
+          : null;
+      if (sel) {
+        audioManager.enableAudioContext().catch(() => {});
+        audioManager.playMusic(sel).catch(() => {});
+      }
+    } catch (e) {}
+    // intentionally do not enable or start audio on mount.
+    // AudioInitializer and AudioEnableButton will enable/resume audio
+    // in response to a user gesture per browser autoplay policy.
+  }, []);
 
   // When idx changes (new question), reset timerLeft and smoothProgress
   useEffect(() => {
@@ -140,6 +159,44 @@ export default function PlayClient() {
 
   const [lastCorrect, setLastCorrect] = useState<boolean | null>(null);
   const expireRef = useRef(false);
+  const submittedRef = useRef(false);
+  const [showEmailPrompt, setShowEmailPrompt] = useState(false);
+  const [emailInput, setEmailInput] = useState("");
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
+  // Submit leaderboard helper (idempotent via submittedRef)
+  async function submitLeaderboard(email?: string | null) {
+    if (submittedRef.current) return;
+    submittedRef.current = true;
+    try {
+      const time_taken = startTime
+        ? Math.round((Date.now() - startTime) / 1000)
+        : 0;
+      const payload = {
+        player_name: username || "anonymous",
+        score,
+        time_taken,
+        email: email ?? null,
+      };
+      console.log("[play] submitting leaderboard", payload);
+      const res = await fetch("/api/leaderboard", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const text = await res.text();
+      try {
+        console.log(
+          "[play] leaderboard response",
+          res.status,
+          JSON.parse(text),
+        );
+      } catch (e) {
+        console.log("[play] leaderboard response (non-json)", res.status, text);
+      }
+    } catch (e) {
+      console.error("Failed to submit leaderboard:", e);
+    }
+  }
   // When the game ends, ensure the timer stops and no further expire actions occur
   useEffect(() => {
     if (!showResult) return;
@@ -149,7 +206,12 @@ export default function PlayClient() {
     setPaused(true);
     // prevent any further expire handling
     expireRef.current = true;
-  }, [showResult]);
+    // show email prompt to collect optional email before submitting
+    setShowEmailPrompt(true);
+    try {
+      audioManager.playEffect("gameover");
+    } catch (e) {}
+  }, [showResult, username, score]);
   // Helper to get a random question index not in last 20
   function getNextQuestionIdx() {
     if (!allQuestions.length) return 0;
@@ -190,15 +252,24 @@ export default function PlayClient() {
       setLastCorrect(correct);
       if (correct) {
         setScore((s) => s + 1);
+        try {
+          audioManager.playEffect("correct");
+        } catch (e) {}
       } else {
-        setHealth((h) => h - 1);
+        setHealth((h) => Math.max(0, h - 1));
+        try {
+          audioManager.playEffect("wrong");
+        } catch (e) {}
       }
       setTimeout(() => {
         setAnswered(false);
         setExpired(false);
         setPaused(false);
         setLastCorrect(null);
-        if (!correct && health - 1 <= 0) {
+        // determine if this wrong answer caused game over based on
+        // the health snapshot when the handler ran
+        const willGameOver = !correct && health <= 1;
+        if (willGameOver) {
           setShowResult(true);
           return;
         }
@@ -234,8 +305,11 @@ export default function PlayClient() {
     setAnswered(true);
     setLastCorrect(false);
     setHealth((h) => {
-      const nh = h - 1;
+      const nh = Math.max(0, h - 1);
       if (nh <= 0) {
+        try {
+          audioManager.playEffect("gameover");
+        } catch (e) {}
         setShowResult(true);
       }
       return nh;
@@ -316,6 +390,7 @@ export default function PlayClient() {
               e.preventDefault();
               if (usernameInput.trim()) {
                 setUsername(usernameInput.trim());
+                setStartTime(Date.now());
                 setStandby(true);
               }
             }}
@@ -386,6 +461,65 @@ export default function PlayClient() {
 
   // (removed duplicate, now at top level)
   if (showResult) {
+    // If email collection is pending, show the email form first
+    if (showEmailPrompt && !emailSubmitted) {
+      return (
+        <main className="min-h-screen flex flex-col items-center justify-center bg-transparent text-slate-200">
+          <div className="max-w-2xl w-full glass-card rounded-xl shadow-2xl p-10 space-y-6 text-center">
+            <h2 className="text-4xl font-bold text-emerald-400 mb-4">
+              Game Over!
+            </h2>
+            <div className="text-2xl mb-2">
+              Your Score: <span className="text-emerald-400">{score}</span>
+            </div>
+            <div className="text-lg text-slate-300 mb-4">
+              Enter your email to complete your leaderboard entry (optional)
+            </div>
+            <form
+              className="flex flex-col items-center gap-4"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                await submitLeaderboard(emailInput.trim() || null);
+                setEmailSubmitted(true);
+                setShowEmailPrompt(false);
+                // then show the regular post-game options
+                setTimeout(() => setShowUserPrompt(true), 100);
+              }}
+            >
+              <input
+                type="email"
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
+                placeholder="you@example.com"
+                className="px-4 py-2 rounded bg-slate-800 border border-slate-700 text-lg text-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-400 w-80"
+              />
+              <div className="flex gap-4">
+                <button
+                  type="submit"
+                  className="px-6 py-2 rounded bg-emerald-400 text-slate-950 font-bold"
+                >
+                  Submit
+                </button>
+                <button
+                  type="button"
+                  className="px-6 py-2 rounded bg-slate-700 text-slate-200 font-bold"
+                  onClick={async () => {
+                    await submitLeaderboard(null);
+                    setEmailSubmitted(true);
+                    setShowEmailPrompt(false);
+                    setTimeout(() => setShowUserPrompt(true), 100);
+                  }}
+                >
+                  Skip
+                </button>
+              </div>
+            </form>
+          </div>
+        </main>
+      );
+    }
+
+    // After email step (or if already submitted), show the regular options
     if (!showUserPrompt) {
       setTimeout(() => setShowUserPrompt(true), 100); // trigger prompt after render
       return (
@@ -435,6 +569,8 @@ export default function PlayClient() {
                 setShowResult(false);
                 setStandby(false);
                 setShowUserPrompt(false);
+                setEmailSubmitted(false);
+                submittedRef.current = false;
               }}
             >
               Same User: {username}
@@ -454,6 +590,8 @@ export default function PlayClient() {
                   setShowResult(false);
                   setStandby(false);
                   setShowUserPrompt(false);
+                  setEmailSubmitted(false);
+                  submittedRef.current = false;
                 }
               }}
             >
@@ -563,14 +701,32 @@ export default function PlayClient() {
                 ></span>
               ))}
             </div>
-            <button
-              className="px-8 py-3 rounded bg-emerald-400 text-slate-950 font-bold text-xl hover:bg-emerald-500 transition mb-2"
-              onClick={() => setPaused(false)}
-            >
-              Resume
-            </button>
-            <div className="text-lg text-slate-300 mb-2">
-              Press Resume to continue
+            <div className="flex flex-col items-center gap-3">
+              <button
+                className="px-8 py-3 rounded bg-emerald-400 text-slate-950 font-bold text-xl hover:bg-emerald-500 transition"
+                onClick={() => setPaused(false)}
+              >
+                Resume
+              </button>
+
+              <button
+                className="px-6 py-2 rounded bg-slate-700 text-slate-200 hover:bg-slate-600 transition"
+                onClick={() => {
+                  // navigate home
+                  try {
+                    window.location.href = "/";
+                  } catch (e) {
+                    // fallback
+                    window.location.assign("/");
+                  }
+                }}
+              >
+                Back Home
+              </button>
+
+              <div className="text-lg text-slate-300 mt-2">
+                Press Resume to continue or Back Home to quit
+              </div>
             </div>
           </div>
         )}

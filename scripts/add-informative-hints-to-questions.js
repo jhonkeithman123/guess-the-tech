@@ -137,7 +137,7 @@ const informativeHints = {
     "A high-level, just-in-time compiled language that conforms to the ECMAScript specification.",
   Kotlin:
     "A cross-platform, statically typed, general-purpose programming language with type inference.",
-  Lua: "A lightweight, high-level, multi-paradigm programming language designed primarily for embedded use.",
+  Lua: "A lightweight and high-level multi-paradigm programming language designed primarily for embedded use.",
   PHP: "A popular general-purpose scripting language especially suited to web development.",
   Python:
     "An interpreted, high-level, general-purpose programming language created by Guido van Rossum.",
@@ -145,8 +145,6 @@ const informativeHints = {
   Rust: "A multi-paradigm, general-purpose programming language focused on performance and safety.",
   Swift:
     "A powerful and intuitive programming language for macOS, iOS, watchOS, and tvOS, developed by Apple.",
-  Typescript:
-    "A strongly typed programming language that builds on JavaScript, developed by Microsoft.",
   "zig mark":
     "Zig is a general-purpose programming language and toolchain for maintaining robust, optimal, and reusable software.",
   // Random
@@ -167,11 +165,9 @@ const informativeHints = {
   // Terminals
   Bash: "A Unix shell and command language written by Brian Fox for the GNU Project.",
   Homebrew:
-    "A free and open-source software package management system that simplifies the installation of software on macOS and Linux.",
+    "A free and open-source software package management system that simplifies the installation of software on macOS.",
   Powershell:
     "A task automation and configuration management program from Microsoft, consisting of a command-line shell and scripting language.",
-  "Windows Terminal logo":
-    "A modern terminal application for users of command-line tools and shells on Windows.",
   // Tools
   Apache:
     "A free and open-source cross-platform web server software, developed and maintained by the Apache Software Foundation.",
@@ -187,7 +183,6 @@ const informativeHints = {
     "A build tool that aims to provide a faster and leaner development experience for modern web projects.",
   Webpack:
     "An open-source JavaScript module bundler, primarily for JavaScript, but can transform front-end assets.",
-  Yarn: "A package manager for code, developed by Facebook to address shortcomings of npm.",
 };
 
 for (const q of questions) {

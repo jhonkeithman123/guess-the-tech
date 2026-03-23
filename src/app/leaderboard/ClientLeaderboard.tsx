@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ChevronRight, Trophy } from "lucide-react";
 import Link from "next/link";
-import { Logo } from "@/components/server/ui/Logo";
+import { Logo } from "@/components/server/Logo";
 
 type LeaderboardRow = {
   player_name: string;
@@ -71,7 +71,7 @@ export default function ClientLeaderboard() {
       </header>
 
       {/* MAIN CONTENT */}
-      <main className="flex-grow flex flex-col z-10">
+      <main className="grow flex flex-col z-10">
         <section className="relative w-full pt-12 pb-32 px-4 flex flex-col items-center justify-start min-h-[80vh]">
           <div className="relative z-10 text-center max-w-5xl mx-auto space-y-6 w-full mt-10">
             <div className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/10 shadow-sm text-gray-200 text-sm font-bold tracking-wide animate-fade-in-up border border-white/20">
@@ -79,14 +79,14 @@ export default function ClientLeaderboard() {
               <span>Leaderboard</span>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-400 pb-2 animate-fade-in-up">
+            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] text-transparent bg-clip-text bg-linear-to-r from-gray-200 to-gray-400 pb-2 animate-fade-in-up">
               HALL OF FAME
             </h1>
 
             {/* DYNAMIC LEADERBOARD TABLE */}
             <div
               className="mt-12 glass-card rounded-3xl shadow-xl overflow-hidden border border-gray-700 max-w-4xl mx-auto animate-fade-in-up relative"
-                style={{ animationDelay: "0.05s" }}
+              style={{ animationDelay: "0.05s" }}
             >
               {/* Google Colors Top Strip */}
               <div className="absolute top-0 left-0 w-full h-1.5 flex">
@@ -109,7 +109,7 @@ export default function ClientLeaderboard() {
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse min-w-[600px]">
+                <table className="w-full text-left border-collapse min-w-150">
                   <thead className="border-b border-gray-700">
                     <tr className="text-gray-400 uppercase text-xs tracking-wider">
                       <th className="p-6 font-bold text-center w-24">Rank</th>
@@ -162,11 +162,11 @@ export default function ClientLeaderboard() {
                             <span
                               className={`inline-flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm ${
                                 i === 0
-                                  ? "bg-[#FBBC04] text-white shadow-md shadow-yellow-500/50"
+                                  ? "bg-gdg-yellow text-white shadow-md shadow-yellow-500/50"
                                   : i === 1
-                                    ? "bg-[#4285F4] text-white shadow-md shadow-blue-500/50"
+                                    ? "bg-gdg-blue text-white shadow-md shadow-blue-500/50"
                                     : i === 2
-                                      ? "bg-[#34A853] text-white shadow-md shadow-green-500/50"
+                                      ? "bg-gdg-green text-white shadow-md shadow-green-500/50"
                                       : "bg-gray-700 text-gray-200"
                               }`}
                             >
@@ -177,7 +177,7 @@ export default function ClientLeaderboard() {
                             {row.player_name}
                           </td>
                           <td className="p-5 text-center font-black text-xl">
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-green-400">
+                            <span className="bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-green-400">
                               {row.score} pts
                             </span>
                           </td>

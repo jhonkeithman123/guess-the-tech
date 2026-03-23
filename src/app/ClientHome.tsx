@@ -1,6 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import audioManager from "@/lib/audio";
+
 import {
   Code2,
   MonitorPlay,
@@ -8,8 +11,136 @@ import {
   Timer,
   ChevronRight,
   Sparkles,
+  Play,
+  Pause,
+  Volume2,
+  Music,
 } from "lucide-react";
-import { Logo } from "@/components/server/ui/Logo";
+import { Logo } from "@/components/server/Logo";
+
+function MusicSelector() {
+  const [manifest, setManifest] = useState({ music: [], sfx: {} } as any);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [playing, setPlaying] = useState(false);
+
+  // list only background music (under /bg_music/) from manifest.music
+  const bgList = (manifest.music || []).filter((p: string) =>
+    p.includes("/bg_music/"),
+  );
+
+  useEffect(() => {
+    let mounted = true;
+    async function load() {
+      await audioManager.loadManifest();
+      const m = (audioManager as any).manifest;
+      if (!mounted) return;
+      setManifest(m || { music: [], sfx: {} });
+      // load persisted selection if present
+      const persisted =
+        typeof window !== "undefined" &&
+        localStorage.getItem("gtt_selected_music");
+      const defaultName = "/audio/bg_music/what_bottom_text_music.mp3";
+      const available = (m?.music || []).filter((p: string) =>
+        p.includes("/bg_music/"),
+      );
+      const defaultUrl =
+        persisted ||
+        (available.includes(defaultName) ? defaultName : available[0] || null);
+      setSelected(defaultUrl);
+      if (defaultUrl) {
+        // attempt to autoplay
+        await audioManager.playMusic(defaultUrl).catch(() => {});
+        setPlaying(true);
+      }
+    }
+    load();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const [volume, setVolume] = useState<number>(
+    audioManager ? audioManager.musicVolume : 50,
+  );
+
+  return (
+    <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 bg-gradient-to-r from-slate-800 to-slate-700 px-3 py-1 rounded-lg ring-1 ring-slate-700">
+        <Music className="text-slate-100" />
+        <select
+          value={selected || ""}
+          onChange={async (e) => {
+            const v = e.target.value || null;
+            setSelected(v);
+            if (v) {
+              localStorage.setItem("gtt_selected_music", v);
+              await audioManager.playMusic(v);
+              setPlaying(true);
+            } else {
+              localStorage.removeItem("gtt_selected_music");
+              audioManager.stopMusic();
+              setPlaying(false);
+            }
+          }}
+          className="bg-transparent text-sm text-slate-100 outline-none pr-6"
+          style={{ color: "#e6edf3" }}
+        >
+          <option value="">(No music)</option>
+          {bgList.map((m: string) => (
+            <option
+              key={m}
+              value={m}
+              style={{ color: "#0f172a", background: "#e6edf3" }}
+            >
+              {m.split("/").pop()}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <button
+          title={playing ? "Stop music" : "Play music"}
+          onClick={() => {
+            if (playing) {
+              audioManager.stopMusic();
+              setPlaying(false);
+              localStorage.removeItem("gtt_selected_music");
+            } else if (selected) {
+              audioManager.playMusic(selected);
+              setPlaying(true);
+              localStorage.setItem("gtt_selected_music", selected);
+            }
+          }}
+          className="flex items-center justify-center w-10 h-10 rounded bg-emerald-600 hover:bg-emerald-500 transition"
+        >
+          {playing ? (
+            <Pause className="text-white" />
+          ) : (
+            <Play className="text-white" />
+          )}
+        </button>
+
+        <div className="flex items-center gap-1 px-2 bg-slate-800 rounded">
+          <Volume2 className="text-slate-300" />
+          <input
+            aria-label="music volume"
+            type="range"
+            min={0}
+            max={100}
+            value={Math.round(volume * 100)}
+            onChange={(e) => {
+              const v = Number(e.target.value) / 100;
+              setVolume(v);
+              audioManager.setMusicVolume(v);
+            }}
+            className="h-2 w-24"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ClientHome() {
   const colors = {
@@ -18,6 +149,20 @@ export default function ClientHome() {
     yellow: "#FBBC04",
     green: "#34A853",
   };
+
+  function ensurePlay() {
+    try {
+      const sel =
+        typeof window !== "undefined"
+          ? localStorage.getItem("gtt_selected_music")
+          : null;
+      if (sel) audioManager.playMusic(sel).catch(() => {});
+      else
+        audioManager
+          .loadManifest()
+          .then(() => audioManager.playMusic().catch(() => {}));
+    } catch (e) {}
+  }
 
   return (
     <div className="relative flex flex-col min-h-screen bg-transparent text-gray-200 overflow-x-hidden font-sans">
@@ -33,13 +178,17 @@ export default function ClientHome() {
             <Logo />
           </Link>
         </div>
-        <nav>
+        <nav className="flex items-center gap-4">
+          <div className="flex items-center gap-2 text-sm text-slate-200">
+            <MusicSelector />
+          </div>
           <Link href="/play">
             <button
               className="group inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold text-white shadow-md transition-all hover:shadow-lg hover:-translate-y-px cursor-pointer"
               style={{
                 backgroundImage: `linear-gradient(135deg, ${colors.blue}, ${colors.green})`,
               }}
+              onClick={() => ensurePlay()}
             >
               Play Now
               <ChevronRight
@@ -83,6 +232,7 @@ export default function ClientHome() {
                   style={{
                     backgroundImage: `linear-gradient(135deg, ${colors.blue}, ${colors.green})`,
                   }}
+                  onClick={() => ensurePlay()}
                 >
                   Start Game
                 </button>
